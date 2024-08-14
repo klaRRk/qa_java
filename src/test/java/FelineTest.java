@@ -26,11 +26,14 @@ public class FelineTest {
 
     @Test
     public void eatMeatTest() throws Exception {
-        // Поведение мока
-        Mockito.when(mockFeline.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
+        // Ожидаемый результат
+        List<String> expectedDiet = List.of("Животные", "Птицы", "Рыба");
 
-        // Сравниваем результаты реального объекта и мока
-        Assert.assertEquals(realFeline.eatMeat(), mockFeline.eatMeat());
+        // Получаем реальный результат
+        List<String> actualDiet = realFeline.eatMeat();
+
+        // Сравниваем ожидаемый и реальный результаты
+        Assert.assertEquals(expectedDiet, actualDiet);
     }
 
     @Test
@@ -53,9 +56,13 @@ public class FelineTest {
 
     @Test
     public void testGetKittens() {
-        Mockito.when(mockFeline.getKittens()).thenReturn(1);
+        // Получаем реальный результат
+        int actualKittens = realFeline.getKittens();
 
-        // Проверяем, что реальный объект и мок возвращают одинаковое значение
-        Assert.assertEquals(realFeline.getKittens(), mockFeline.getKittens());
+        // Предполагаемое значение по умолчанию
+        int expectedKittens = 1;
+
+        // Сравниваем ожидаемый и реальный результаты
+        Assert.assertEquals(expectedKittens, actualKittens);
     }
 }

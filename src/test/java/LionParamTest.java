@@ -5,7 +5,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -38,18 +37,7 @@ public class LionParamTest {
     public void doesHaveManeTest() throws Exception {
         // Инициализация объекта Lion с параметрами
         Lion lion = new Lion(sex, predator);
-
-        // Создаем мок объект Lion для имитации поведения
-        Lion mockedLion = Mockito.mock(Lion.class);
-        // Поведение мока в зависимости от пола льва
-        if ("Самец".equals(sex)) {
-            Mockito.when(mockedLion.doesHaveMane()).thenReturn(true);
-        } else if ("Самка".equals(sex)) {
-            Mockito.when(mockedLion.doesHaveMane()).thenReturn(false);
-        }
-
-        // Сравнение возвращаемого значения метода doesHaveMane() с ожидаемым
-        Assert.assertEquals(lion.doesHaveMane(), mockedLion.doesHaveMane());
-    }
-
+        // Сравнение ожидаемого значения с возвращаемым значением метода doesHaveMane()
+        Assert.assertEquals(expectedHasMane, lion.doesHaveMane());
+     }
 }

@@ -9,6 +9,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Arrays;
 
+import static org.junit.Assert.assertThrows;
+
 @RunWith(MockitoJUnitRunner.class)
 public class LionTest {
 
@@ -39,9 +41,16 @@ public class LionTest {
         Assert.assertEquals(Arrays.asList("Животные", "Птицы", "Рыба"), lion.getFood());
     }
 
-    @Test(expected = Exception.class)
-    public void invalidSexTest() throws Exception {
+    // @Test(expected = Exception.class)
+   // public void invalidSexTest() throws Exception {
         // Проверяем отображение исключения при некорректном входном параметре
-        new Lion("НекорректныйПол", predator);
+       // new Lion("НекорректныйПол", predator);
+    @Test
+    public void invalidSexTest() {
+        // Проверяем отображение исключения при некорректном входном параметре
+        Exception exception = assertThrows(Exception.class, () -> new Lion("НекорректныйПол", predator));
+
+        // Проверяем текст сообщения исключения
+        Assert.assertEquals("Используйте допустимые значения пола животного - самец или самка", exception.getMessage());
     }
 }

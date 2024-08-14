@@ -7,7 +7,6 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.Mockito;
 import java.util.List;
-import static org.mockito.Mockito.mock;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CatTest {
@@ -17,8 +16,6 @@ public class CatTest {
 
     @Test
     public void getSoundTest() {
-        // Мок объекта Feline
-        Feline felineMock = mock(Feline.class);
 
         // Создание экземпляра Cat с использованием мока Feline
         Cat cat = new Cat(felineMock);
