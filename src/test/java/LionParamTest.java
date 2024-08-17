@@ -1,10 +1,12 @@
 import com.example.Lion;
 import com.example.Predator;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -15,14 +17,20 @@ public class LionParamTest {
     String sex;
     boolean expectedHasMane;
 
+    @Mock
+    Predator predator;
+
     // Конструктор для передачи параметров
     public LionParamTest(String sex, boolean expectedHasMane) {
         this.sex = sex;
         this.expectedHasMane = expectedHasMane;
     }
 
-    @Mock
-    Predator predator;
+    @Before
+    // Инициализация моков
+    public void init() {
+        MockitoAnnotations.openMocks(this);
+    }
 
     // Параметризация для создания набора данных для тестов
     @Parameterized.Parameters

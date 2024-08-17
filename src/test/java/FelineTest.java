@@ -3,25 +3,18 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
 
-import static org.mockito.Mockito.*;
-
 @RunWith(MockitoJUnitRunner.class)
 public class FelineTest {
 
-    @Mock
-    Feline mockFeline;
-    // Поле для хранения реального объекта Feline
-    private Feline realFeline;
-    // Инициализация Feline
+    private Feline feline;
+
     @Before
     public void setUp() {
-        realFeline = new Feline();
+        feline = new Feline();
     }
 
     @Test
@@ -30,7 +23,7 @@ public class FelineTest {
         List<String> expectedDiet = List.of("Животные", "Птицы", "Рыба");
 
         // Получаем реальный результат
-        List<String> actualDiet = realFeline.eatMeat();
+        List<String> actualDiet = feline.eatMeat();
 
         // Сравниваем ожидаемый и реальный результаты
         Assert.assertEquals(expectedDiet, actualDiet);
@@ -39,25 +32,24 @@ public class FelineTest {
     @Test
     public void getFamilyTest() {
         // Проверяем корректность возвращаемого значения для реального объекта
-        String result = realFeline.getFamily();
+        String result = feline.getFamily();
         String expectedFamily = "Кошачьи";
         Assert.assertEquals(expectedFamily, result);
     }
 
     @Test
     public void getKittensTest() {
-        Mockito.when(mockFeline.getKittens()).thenReturn(1);
 
         // Проверяем результат и количество вызовов
-        int result = mockFeline.getKittens();
-        Assert.assertEquals(1, result);
-        Mockito.verify(mockFeline, times(1)).getKittens();
+        int result = feline.getKittens();
+        int expectedKittens = 1;
+        Assert.assertEquals(expectedKittens, result);
     }
 
     @Test
     public void testGetKittens() {
         // Получаем реальный результат
-        int actualKittens = realFeline.getKittens();
+        int actualKittens = feline.getKittens();
 
         // Предполагаемое значение по умолчанию
         int expectedKittens = 1;
